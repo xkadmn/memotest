@@ -13,6 +13,9 @@ import { CommonModule } from '@angular/common';
 export class TableroComponent {
   public piezas: Array<Pieza> = new Array<Pieza>();
   public dorso: string = "https://e0.pxfuel.com/wallpapers/217/415/desktop-wallpaper-mario-star.jpg";
+  public cartasSeleccionadas: Pieza[] = [];
+  public puntaje: number = 0;
+
 
   constructor() {
     let numeros: Number[] = new Array<Number>();
@@ -28,10 +31,10 @@ export class TableroComponent {
       let imagen = "";
       switch (element) {
         case 0:
-          imagen = 'https://mario.nintendo.com/static/a5f7fe49f4862aa68eaba347ee05c336/02be2/mario.png';
+          imagen = 'https://mario.nintendo.com/static/7204f288e3e823a8203c445fb6cc0d7e/b1656/bowser.png';
           break;
         case 1:
-          imagen = 'https://mario.nintendo.com/static/12386c8cabe28d812b427d21c9f26d52/d9801/luigi.png';
+          imagen = 'https://mario.nintendo.com/static/850b7938ec9df2a77921738a12857e88/c4ba3/yoshi.png';
           break;
         case 2:
           imagen = 'https://mario.nintendo.com/static/43a96c1d5b681d338864aac15cd391b9/f3703/peach.png';
@@ -46,17 +49,33 @@ export class TableroComponent {
     });
 
   }
+  piezaClick(pieza: Pieza) {
+    if (!pieza.descubierta && !pieza.seleccionada && this.cartasSeleccionadas.length < 2) {
+      pieza.descubierta = true;
+      this.cartasSeleccionadas.push(pieza);
+
+      if (this.cartasSeleccionadas.length === 2) {
+        setTimeout(() => {
+          this.validar();
+        }, 500);
+      }
+    }
+  }
 
 
+  validar() {
+    const [pieza1, pieza2] = this.cartasSeleccionadas;
 
-  validar(){
- let selec = this.piezas.filter(x=> x.seleccionada);
-    if(selec.length == 2){
-      selec[0].seleccionada = false;
-      selec[1].seleccionada = false;
-      selec[0].seleccionada = selec[1].imagen == selec[0].imagen;
-      selec[1].seleccionada = selec[1].imagen == selec[0].imagen;
+    if (pieza1.imagen === pieza2.imagen) {
+      pieza1.descubierta = true;
+      pieza2.descubierta = true;
+      this.puntaje++; // Incrementar el puntaje 
+    } else {
+      pieza1.descubierta = false;
+      pieza2.descubierta = false;
+    }
 
-  };
+    this.cartasSeleccionadas = [];
+  }
 
-}}
+}

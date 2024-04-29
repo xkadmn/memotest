@@ -7,7 +7,7 @@ body{
 }
 
 .container-fluid{
-    height:700px;
+    height:1000px;
 }
 
 .tablero {
@@ -24,6 +24,8 @@ body{
     margin-top: 15px;
     padding-top: 30px;
     padding-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
    
 }
 .piezas{
@@ -38,7 +40,7 @@ img{
 
 .titulo {
     
-    width: 700px;
+    width: 850px;
     text-align: center;
   }
   
