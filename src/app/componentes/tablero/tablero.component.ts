@@ -15,6 +15,8 @@ export class TableroComponent {
   public dorso: string = "https://e0.pxfuel.com/wallpapers/217/415/desktop-wallpaper-mario-star.jpg";
   public cartasSeleccionadas: Pieza[] = [];
   public puntaje: number = 0;
+  public mostrarFelicitaciones: boolean = false; // Variable para controlar la visibilidad de las felicitaciones
+
 
 
   constructor() {
@@ -76,6 +78,17 @@ export class TableroComponent {
     }
 
     this.cartasSeleccionadas = [];
+  }
+
+  reiniciarJuego() {
+    this.piezas.forEach(pieza => {
+      pieza.descubierta = false;
+      pieza.seleccionada = false;
+    });
+  
+    this.cartasSeleccionadas = [];
+    this.puntaje = 0;
+    
   }
 
 }

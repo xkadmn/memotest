@@ -39,8 +39,6 @@ img{
 }
 
 .titulo {
-    
-    width: 850px;
     text-align: center;
   }
   
@@ -48,4 +46,24 @@ img{
     font-size: 24px; 
     font-weight: bold; 
     margin: 0;
+  }
+
+  img.reset{
+    width: 20%;
+  }
+
+  @keyframes flash {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .flash {
+    animation: flash 0.5s infinite;
+  }
+  .felicidades {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10; /* Asegura que la imagen esté por encima de los demás elementos */
   }

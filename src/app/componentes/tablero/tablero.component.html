@@ -12,24 +12,32 @@
     
 </head>   
     <body>
-      <div class="titulo"><p>MemoTest</p></div>
-      
-      <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" [style.width.%]="puntaje * 25" [attr.aria-valuenow]="puntaje * 25" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="titulo row">
+        <div class="col text-center">
+          <p>MemoTest</p>
+        </div>
+        <div class="col text-end">
+          <img class="btn reset" (click)="reiniciarJuego()" src="https://as2.ftcdn.net/v2/jpg/06/15/57/29/1000_F_615572906_43PsW8g2rkZuHCxZb9njWonrf5dvkM12.jpg">
+        </div>
       </div>
-
+      <div class="progress">
+        <div class="progress-bar bg-success" 
+             role="progressbar" 
+             [style.width.%]="puntaje * 25" 
+             [attr.aria-valuenow]="puntaje * 25" 
+             aria-valuemin="0" 
+             aria-valuemax="100"
+             [class.flash]="puntaje === 4">
+        </div>
+      </div>
+      
       <div class="container-fluid">
         <div class="tablero row">
-
           <div *ngFor="let pieza of piezas" class="piezas col-3" (click)="piezaClick(pieza)">
            <img class="rounded-5 img-piezas" [src]="pieza.descubierta || pieza.seleccionada ? pieza.imagen : dorso">
           </div>
-
         </div>
      </div>
-    </body>
+  </body>
 </html>
  
-        
- <!--   <img class="rounded-circle" [src]="dorso" style="max-width: 100%;" *ngif="!pieza.seleccionada&&!pieza.descubierta"/>  
-            <img class="rounded-circle" [src]="dorso" style="max-width: 100%;" *ngif="pieza.seleccionada||pieza.descubierta"/>/>*/-->
